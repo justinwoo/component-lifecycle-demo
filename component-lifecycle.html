@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="build/react-with-addons.js"></script>
+  <script src="build/JSXTransformer.js"></script>
+</head>
+
+<body>
+
+  <div id="example"></div>
+  
+   <script type="text/jsx">
+  /** @jsx React.DOM */
+
+  var MyApp = React.createClass({
+
+    getDefaultProps: function() {
+      console.log("#getDefaultProps");
+    },
+
+    getInitialState: function() {
+      console.log("#getInitialState");
+      return null;
+    },
+
+    componentWillMount: function() {
+      console.log("#componentWillMount");
+    },
+
+    render: function() {
+      console.log("#render");
+      return (
+        <div>
+          <h2>I am rendered now!</h2>
+          <h3>{this.props.test}</h3>
+        </div>
+      );
+    },
+
+    componentDidMount: function() {
+      console.log("#componentDidMount");
+    },
+
+    // End of Component Mount Cycle
+
+    componentWillReceiveProps: function() {
+      console.log("#componentWillReceiveProps");
+    },
+
+    shouldComponentUpdate: function() {
+      console.log("#shouldComponentUpdate");
+      return true;
+    },
+
+    componentWillUpdate: function() {
+      console.log("#componentWillUpdate");
+    },
+
+    // renders here on proprty update
+
+    componentDidUpdate: function() {
+      console.log("#componentDidUpdate");
+    },
+
+    // End of Component Property Update Cycle
+
+    componentWillUnmount: function() {
+      console.log("#componentWillUnmount");
+    }
+
+  });
+
+  var myApp = React.renderComponent(
+    <MyApp />,
+    document.getElementById('example')
+  );
+
+  console.log("\nComponent Rendering Finished\n");
+
+  myApp.setProps({
+    test: "test"
+  });
+
+  console.log("\nComponent Property Set Finished\n");
+
+  React.unmountComponentAtNode(document.getElementById('example'));
+
+  console.log("\nComponent Unmounting Finished\n");
+
+  </script>
+
+</body>
+
+</html>
